@@ -15,7 +15,7 @@ if(isset($_GET['txtID'])){
 $sentencia = $conexion->prepare("SELECT * FROM `tbl_puestos`");
 $sentencia->execute();
 $lista_tbl_puestos = $sentencia->fetchAll(PDO::FETCH_ASSOC);
-
+// cambio 
 // print_r($lista_tbl_puestos);
 // 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//
 ?>
