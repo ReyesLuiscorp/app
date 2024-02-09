@@ -1,3 +1,26 @@
+
+<?php
+
+include("../../bd.php");
+
+if($_POST){
+   // print_r($_POST);
+     //recoge los datos del input post
+     $usuario=(isset($_POST["usuario"])?$_POST["usuario"]:"");
+     $password=(isset($_POST["password"])?$_POST["password"]:"");
+     $correo=(isset($_POST["correo"])?$_POST["correo"]:"");
+     // preparar inserccion
+    $sentencia=$conexion->prepare("INSERT INTO tbl_usuarios (id,usuario,password,correo)
+    VALUES (NULL,:usuario,:password,:correo) ");
+
+$sentencia->bindParam(":usuario",$usuario);
+$sentencia->bindParam(":password",$password);
+$sentencia->bindParam(":correo",$correo);
+$sentencia->execute();
+ header("location:index.php");
+}
+
+?>
 <?php include("../../templates/header.php"); ?>
 
 

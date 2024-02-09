@@ -1,3 +1,23 @@
+<?php
+
+include("../../bd.php");
+
+
+if(isset($_GET['txtID'])){
+    $txtID=(isset($_GET['txtID']))?$_GET['txtID']:"";
+
+    $sentencia=$conexion->prepare("DELETE FROM tbl_usuarios WHERE id=:id");
+    $sentencia->bindParam(":id",$txtID);
+    $sentencia->execute();
+    header("location:index.php");
+}
+
+
+$sentencia = $conexion->prepare("SELECT * FROM `tbl_usuarios`");
+$sentencia->execute();
+$lista_tbl_usuarios = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+?>
 <?php include("../../templates/header.php");?>
 
 <br>
@@ -11,7 +31,7 @@
 <a name="" id="" class="btn btn-primary" href="crear.php" role="button">Agregar usuario</a>
 </div>
     <div class="card-body">
-
+ 
         <div class="table-responsive-sm">
             <table class="table">
                 <thead>
@@ -24,17 +44,24 @@
                     </tr>
                 </thead>
                 <tbody>
+
+                <?php foreach ($lista_tbl_usuarios as $registro) { ?>
+
                     <tr class="">
-                        <td scope="row">1</td>
-                        <td>jose</td>
-                        <td>programador</td>
-                        <td>programador</td>
+                        <td scope="row"><?php echo $registro['id']; ?></td>
+                        <td><?php echo $registro['usuario']; ?></td>
+                        <td><?php echo $registro['password']; ?></td>
+                        <td><?php echo $registro['correo']; ?></td>
                         <td>
-                            <input name="btneditar" id="btneditar" class="btn btn-primary" type="button" value="editar" />
-                            <input name="btnborrar" id="btnborrar" class="btn btn-danger" type="button" value="eliminar" />     
+                        <a  class="btn btn-info" href="editar.php?txtID=<?php echo $registro['id'];?>" role="button">editar</a>
+
+|
+<a  class="btn btn-danger" href="index.php?txtID=<?php echo $registro['id'];?>" role="button">eliminar</a>     
                         </td>
                     </tr>
                     
+                    <?php } ?>
+
                 </tbody>
 
 
