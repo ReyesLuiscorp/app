@@ -5,7 +5,7 @@ $baseDeDatos="app";
 $usuario="root";
 $contraseña="";
 
-
+// act
 try {
     $conexion= new PDO("mysql:host=$servidor;dbname=$baseDeDatos",$usuario,$contraseña);
 }catch(Exception $ex){
