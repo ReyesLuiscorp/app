@@ -22,7 +22,7 @@ if(isset($_GET['txtID'])){
 
 if($_POST){
     // print_r($_POST);
-     //recoge los datos del input post 0
+     //recoge los datos del input post 0 0
      $txtID=(isset($_POST['txtID']))?$_POST['txtID']:"";
      $usuario=(isset($_POST["usuario"])?$_POST["usuario"]:"");
      $password=(isset($_POST["password"])?$_POST["password"]:"");
